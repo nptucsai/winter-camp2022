@@ -1,3 +1,26 @@
+:root {
+  font-size: 10px;
+
+  --light-bg-color: #fff;
+  --light-font-color: #000;
+  --dark-bg-color: #000;
+  --dark-font-color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --auto-bg-color: var(--dark-bg-color);
+    --auto-font-color: var(--dark-font-color);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --auto-bg-color: var(--light-bg-color);
+    --auto-font-color: var(--light-font-color);
+  }
+}
+
 body,
 #root {
   width: 100vw;
