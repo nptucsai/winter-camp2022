@@ -1,7 +1,10 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-const routes = [];
+// Pages
+import Home from '../Pages/Home';
+
+const routes = [{ name: 'home', path: '/', element: <Home /> }];
 
 export default function () {
   return (
