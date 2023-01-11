@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchNavData } from '../Store/nav.slice';
 
 // Components
 import _Main from '../Components/Main';
@@ -55,6 +56,12 @@ const Main = styled(_Main)`
 
 export default function Home() {
   const navList = useSelector((s) => s.nav);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchNavData());
+  }, []);
+
   return (
     <Main>
       <h1>NPTU CSAI Winter Camp</h1>
