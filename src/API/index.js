@@ -27,6 +27,14 @@ export const addNav = (label, url, token) =>
     },
     { headers: { Authorization: token } }
   );
+export const editNav = (id, label, url, token) =>
+  api_v1.post(
+    '/',
+    {
+      query: `mutation { editNav(id: "${id}", url: "${url}", label: "${label}") { id label url } }`
+    },
+    { headers: { Authorization: token } }
+  );
 
 export const verifyToken = (token) =>
   api_v2.post('/auth/verify', {}, { headers: { Authorization: token } });

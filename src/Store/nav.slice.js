@@ -13,13 +13,19 @@ const slice = createSlice({
     },
     pushNav: (state, { payload }) => {
       return [...state, payload];
+    },
+    editNav: (state, { payload }) => {
+      const { id, label, url } = payload;
+      const item = state.find((x) => x.id === id);
+      item.label = label;
+      item.url = url;
     }
   }
 });
 
 export default slice.reducer;
 
-import { deleteNav as _deleteNav, addNav as _addNav } from '../API';
+import { deleteNav as _deleteNav, addNav as _addNav, editNav as _editNav } from '../API';
 
 export const fetchNavData = () => async (dispatch, _) => {
   const response = await getNav();
@@ -47,5 +53,19 @@ export const addNav = (label, url) => async (dispatch, getState) => {
     dispatch({ type: 'nav/pushNav', payload: { ...response.data.data.addNav } });
   } catch (error) {
     alert('Failed to add the item.');
+  }
+};
+
+export const editNav = (id, label, url) => async (dispatch, getState) => {
+  const token = getState().auth;
+  const item = getState().nav.find((x) => x.id === id);
+  if (item.label === label && item.url === url) return;
+
+  try {
+    const response = await _editNav(id, label, url, token);
+    dispatch({ type: 'nav/editNav', payload: { ...response.data.data.editNav } });
+  } catch (error) {
+    console.log(error);
+    alert('Failed to update the item.');
   }
 };

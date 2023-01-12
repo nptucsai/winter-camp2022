@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchNavData, deleteNav, addNav } from '../../Store/nav.slice';
+import { fetchNavData, deleteNav, addNav, editNav } from '../../Store/nav.slice';
 
 // Components
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
@@ -144,9 +144,10 @@ const Form = styled.form`
 export default function NavControl() {
   const dispatch = useDispatch();
   const navList = useSelector((s) => s.nav);
-  const [popupTrigger, setPopupTrigger] = useState(false);
-  const labelInput = useRef(0);
-  const urlInput = useRef(0);
+  const [popupTrigger, setPopupTrigger] = useState(0);
+
+  const [labelValue, setLabel] = useState('');
+  const [urlValue, setUrl] = useState('');
 
   useEffect(() => {
     dispatch(fetchNavData());
@@ -157,20 +158,34 @@ export default function NavControl() {
     dispatch(deleteNav(id));
   };
 
-  const handleNewButton = (e) => {
-    const label = labelInput.current.value;
-    const url = urlInput.current.value;
-
-    dispatch(addNav(label, url));
-    setPopupTrigger(false);
+  const handleFormSubmit = (e) => {
+    if (popupTrigger === '_NEW_') dispatch(addNav(labelValue, urlValue));
+    else dispatch(editNav(popupTrigger, labelValue, urlValue));
+    setPopupTrigger(0);
     e.preventDefault();
+  };
+
+  const handleEditButton = (e) => {
+    const id = e.currentTarget.dataset.id;
+
+    const { label, url } = navList.find((x) => x.id === id);
+
+    setLabel(label);
+    setUrl(url);
+    setPopupTrigger(id);
+  };
+
+  const handleNewButton = (e) => {
+    setLabel('');
+    setUrl('');
+    setPopupTrigger('_NEW_');
   };
 
   return (
     <Container>
       <h1>
         <span>Nav control</span>
-        <Button type="info" onClick={(e) => setPopupTrigger(true)}>
+        <Button type="info" onClick={handleNewButton}>
           <MdOutlineAdd />
           <span>New</span>
         </Button>
@@ -182,7 +197,7 @@ export default function NavControl() {
             <span>{x.label}</span>
             <span>{x.url}</span>
             <span>
-              <Button type="success">
+              <Button type="success" onClick={handleEditButton} data-id={x.id}>
                 <AiOutlineEdit />
                 <span>Edit</span>
               </Button>
@@ -195,24 +210,28 @@ export default function NavControl() {
         ))}
       </article>
       <Popup
-        open={popupTrigger}
-        onClose={(e) => setPopupTrigger(false)}
+        open={!!popupTrigger}
+        onClose={(e) => setPopupTrigger(0)}
         closeOnDocumentClick
         position="right center"
         nested
         modal
       >
-        <Form>
+        <Form onSubmit={handleFormSubmit}>
           <section>
             <label>Label:</label>
-            <input ref={labelInput} />
+            <input value={labelValue} onChange={(e) => setLabel(e.target.value)} />
           </section>
           <section>
             <label>url:</label>
-            <input placeholder="https://" ref={urlInput} />
+            <input
+              placeholder="https://"
+              value={urlValue}
+              onChange={(e) => setUrl(e.target.value)}
+            />
           </section>
           <section>
-            <input type="submit" onClick={handleNewButton} />
+            <input type="submit" />
           </section>
         </Form>
       </Popup>
