@@ -109,7 +109,7 @@ export default function Login() {
         </section>
         <section>
           <label htmlFor="password">Password: </label>
-          <input id="password" ref={passwordInput} />
+          <input type="password" id="password" ref={passwordInput} />
         </section>
         <section>
           <label></label>
