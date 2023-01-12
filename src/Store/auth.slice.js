@@ -30,7 +30,8 @@ export const verifyToken = () => async (dispatch, getItem) => {
 
   if (token === null) return;
   try {
-    const response = await _validToken(token);
+    const response = await _verifyToken(token);
+
     dispatch({ type: 'auth/setToken', payload: response.data });
   } catch (error) {
     dispatch({ type: 'auth/revokeToken' });
