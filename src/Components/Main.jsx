@@ -5,6 +5,8 @@ import styled from 'styled-components';
 const Main = styled.main`
   width: 100vw;
   height: 100vh;
+  font-family: -apple-system, system-ui, 'Segoe UI', Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji';
 
   background: var(--${(props) => props.theme}-bg-color);
   color: var(--${(props) => props.theme}-font-color);
