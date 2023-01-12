@@ -13,6 +13,12 @@ export const api_v2 = axios.create({
 });
 
 export const getNav = () => api_v1.post('/', { query: '{ nav { id label url } }' });
+export const deleteNav = (id, token) =>
+  api_v1.post(
+    '/',
+    { query: `mutation { deleteNav(id: "${id}") { id } }` },
+    { headers: { Authorization: token } }
+  );
 
 export const verifyToken = (token) =>
   api_v2.post('/auth/verify', {}, { headers: { Authorization: token } });

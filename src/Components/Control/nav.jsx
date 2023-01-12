@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchNavData } from '../../Store/nav.slice';
+import { fetchNavData, deleteNav } from '../../Store/nav.slice';
 
 // Components
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
@@ -116,6 +116,11 @@ export default function NavControl() {
     dispatch(fetchNavData());
   }, []);
 
+  const handleDeleteButton = (e) => {
+    const id = e.currentTarget.dataset.id;
+    dispatch(deleteNav(id));
+  };
+
   return (
     <Container>
       <h1>Nav control</h1>
@@ -130,7 +135,7 @@ export default function NavControl() {
                 <AiOutlineEdit />
                 <span>Edit</span>
               </Button>
-              <Button type="danger">
+              <Button type="danger" onClick={handleDeleteButton} data-id={x.id}>
                 <AiOutlineDelete />
                 <span>Delete</span>
               </Button>
