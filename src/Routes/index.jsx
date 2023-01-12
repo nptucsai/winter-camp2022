@@ -1,25 +1,25 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 // Pages
 import Home from '../Pages/Home';
 import Login from '../Pages/Login';
+import Control from '../Pages/Control';
 
-const routes = [
+const router = createBrowserRouter([
   { name: 'home', path: '/', element: <Home /> },
   {
     name: 'login',
     path: '/login',
     element: <Login />
+  },
+  {
+    name: 'control',
+    path: '/control',
+    element: <Control />
   }
-];
+]);
 
-export default function () {
-  return (
-    <Routes>
-      {routes.map(({ name, ...route }) => (
-        <Route key={name} {...route} />
-      ))}
-    </Routes>
-  );
+export default function Router() {
+  return <RouterProvider router={router} />;
 }
