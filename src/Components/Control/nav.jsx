@@ -37,7 +37,8 @@ const Container = styled.article`
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    padding: 0 3px;
+    padding: 5px 3px;
+    border-bottom: 1px solid var(--color);
   }
 
   @media screen and (min-width: 651px) {
@@ -84,6 +85,7 @@ const Container = styled.article`
 
     .nav-items > span {
       width: 100%;
+      border: 0;
     }
 
     .nav-items > span:before {
@@ -113,6 +115,7 @@ export default function NavControl() {
   useEffect(() => {
     dispatch(fetchNavData());
   }, []);
+
   return (
     <Container>
       <h1>Nav control</h1>
