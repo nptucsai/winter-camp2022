@@ -19,6 +19,14 @@ export const deleteNav = (id, token) =>
     { query: `mutation { deleteNav(id: "${id}") { id } }` },
     { headers: { Authorization: token } }
   );
+export const addNav = (label, url, token) =>
+  api_v1.post(
+    '/',
+    {
+      query: `mutation { addNav(url: "${url}", label: "${label}") { id label url } }`
+    },
+    { headers: { Authorization: token } }
+  );
 
 export const verifyToken = (token) =>
   api_v2.post('/auth/verify', {}, { headers: { Authorization: token } });

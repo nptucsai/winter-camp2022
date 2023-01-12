@@ -1,19 +1,34 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchNavData, deleteNav } from '../../Store/nav.slice';
+import { fetchNavData, deleteNav, addNav } from '../../Store/nav.slice';
 
 // Components
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
+import { MdOutlineAdd } from 'react-icons/md';
 import Button from '../Button';
+import Popup from '../Popup';
 
 const Container = styled.article`
   font-size: 1.8rem;
 
   h1 {
-    font-size: 1.6em;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 25px;
+  }
+
+  h1 > span {
+    font-size: 1.6em;
+  }
+
+  h1 > button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
   }
 
   #nav-list {
@@ -108,9 +123,30 @@ const Container = styled.article`
   }
 `;
 
+const Form = styled.form`
+  color: var(--color);
+  font-size: 2rem;
+  width: 100%;
+  margin: auto;
+  box-sizing: border-box;
+  section {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+  }
+
+  * {
+    font-size: 1em;
+  }
+`;
+
 export default function NavControl() {
   const dispatch = useDispatch();
   const navList = useSelector((s) => s.nav);
+  const [popupTrigger, setPopupTrigger] = useState(false);
+  const labelInput = useRef(0);
+  const urlInput = useRef(0);
 
   useEffect(() => {
     dispatch(fetchNavData());
@@ -121,9 +157,24 @@ export default function NavControl() {
     dispatch(deleteNav(id));
   };
 
+  const handleNewButton = (e) => {
+    const label = labelInput.current.value;
+    const url = urlInput.current.value;
+
+    dispatch(addNav(label, url));
+    setPopupTrigger(false);
+    e.preventDefault();
+  };
+
   return (
     <Container>
-      <h1>Nav control</h1>
+      <h1>
+        <span>Nav control</span>
+        <Button type="info" onClick={(e) => setPopupTrigger(true)}>
+          <MdOutlineAdd />
+          <span>New</span>
+        </Button>
+      </h1>
       <article id="nav-list">
         {navList.map((x, i) => (
           <section key={i} className="nav-items">
@@ -143,6 +194,28 @@ export default function NavControl() {
           </section>
         ))}
       </article>
+      <Popup
+        open={popupTrigger}
+        onClose={(e) => setPopupTrigger(false)}
+        closeOnDocumentClick
+        position="right center"
+        nested
+        modal
+      >
+        <Form>
+          <section>
+            <label>Label:</label>
+            <input ref={labelInput} />
+          </section>
+          <section>
+            <label>url:</label>
+            <input placeholder="https://" ref={urlInput} />
+          </section>
+          <section>
+            <input type="submit" onClick={handleNewButton} />
+          </section>
+        </Form>
+      </Popup>
     </Container>
   );
 }
