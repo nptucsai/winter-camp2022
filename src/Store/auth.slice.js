@@ -46,3 +46,5 @@ export const login = (name, password) => async (dispatch, _) => {
     alert(response.data);
   }
 };
+
+export const { revokeToken } = slice.actions;
