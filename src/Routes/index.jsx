@@ -8,8 +8,11 @@ import Control from '../Pages/Control';
 import NavControl from '../Components/Control/nav';
 import UserControl from '../Components/Control/User';
 
+// FallbackElement
+import ErrorPage from './ErrorPage';
+
 const router = createBrowserRouter([
-  { name: 'home', path: '/', element: <Home /> },
+  { name: 'home', path: '/', element: <Home />, errorElement: <ErrorPage /> },
   {
     name: 'login',
     path: '/login',
