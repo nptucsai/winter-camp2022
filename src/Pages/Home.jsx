@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchNavData } from '../Store/nav.slice';
+import { fetchBasic } from '../Store/basic.slice';
 
 // Components
 import _Main from '../Components/Main';
@@ -13,17 +14,17 @@ const Main = styled(_Main)`
   justify-content: center;
   align-items: center;
 
-  font-size: 2rem;
+  font-size: ${({ rootSize }) => rootSize};
 
   & > h1 {
-    font-size: 1.6em;
+    font-size: ${({ titleSize }) => titleSize};
     margin: 0;
     text-align: center;
     border-bottom: 1px solid var(--color);
   }
 
   & > nav {
-    font-size: 1em;
+    font-size: ${({ navSize }) => navSize};
 
     ul {
       list-style-type: none;
@@ -81,15 +82,21 @@ const Main = styled(_Main)`
 
 export default function Home() {
   const navList = useSelector((s) => s.nav);
+  const title = useSelector((s) => s.basic.HOME_TITLE);
+  const rootSize = useSelector((s) => s.basic.HOME_FONT_SIZE);
+  const titleSize = useSelector((s) => s.basic.HOME_TITLE_SIZE);
+  const navSize = useSelector((s) => s.basic.HOME_NAV_SIZE);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchNavData());
+    dispatch(fetchBasic());
   }, []);
 
   return (
-    <Main>
-      <h1>NPTU CSAI Winter Camp</h1>
+    <Main rootSize={rootSize} titleSize={titleSize} navSize={navSize}>
+      <h1>{title}</h1>
       <nav>
         <ul>
           {navList.map((item, index) => (
