@@ -28,13 +28,15 @@ const Main = styled(_Main)`
     ul {
       list-style-type: none;
       display: flex;
+      flex-wrap: wrap;
       flex-direction: row;
       padding: 0;
     }
 
     ul li {
       padding: 0 15px;
-      font-size: 2.2rem;
+      font-size: 1em;
+      white-space: nowrap;
     }
 
     ul li:not(:last-child) {
@@ -51,6 +53,29 @@ const Main = styled(_Main)`
     position: fixed;
     top: 20px;
     right: 20px;
+  }
+
+  @media screen and (max-width: 750px) {
+    font-size: 1.6rem;
+  }
+
+  @media screen and (max-width: 600px) {
+    main > h1 {
+      border-bottom: 1px solid #f1f6f5;
+      font-size: 4rem;
+    }
+    nav ul {
+      flex-direction: column;
+    }
+
+    nav ul li {
+      padding: 8px 0;
+      font-size: 2.4rem;
+    }
+
+    nav ul li:not(:last-child) {
+      border-right: none;
+    }
   }
 `;
 
