@@ -10,6 +10,7 @@ import _Main from '../Components/Main';
 import ThemeSwitch from '../Components/ThemeSwitch';
 import IconLink from '../Components/IconLink';
 import { AiOutlineLink, AiOutlineHome, AiOutlineUser, AiOutlineLogout } from 'react-icons/ai';
+import { MdArrowBack } from 'react-icons/md';
 
 const Main = styled(_Main)`
   #feature {
@@ -25,6 +26,11 @@ const Main = styled(_Main)`
     min-width: min-content;
     margin: auto;
   }
+
+  #back {
+    flex: 1 0 auto;
+    justify-content: flex-start;
+  }
 `;
 
 export default function Control() {
@@ -37,9 +43,14 @@ export default function Control() {
   }, [token]);
 
   const logout = (e) => void dispatch(revokeToken());
+  const handleBackButton = (e) => {
+    navigate(-1);
+    e.preventDefault();
+  };
   return (
     <Main>
       <section id="feature">
+        <IconLink to="#" id="back" children={<MdArrowBack />} onClick={handleBackButton} />
         <IconLink to="/" children={<AiOutlineHome />} />
         <IconLink to="/control/user" children={<AiOutlineUser />} />
         <IconLink to="/control/nav" children={<AiOutlineLink />} />
