@@ -8,7 +8,7 @@ import { Outlet } from 'react-router-dom';
 import _Main from '../Components/Main';
 import ThemeSwitch from '../Components/ThemeSwitch';
 import IconLink from '../Components/IconLink';
-import { AiOutlineLink, AiOutlineHome } from 'react-icons/ai';
+import { AiOutlineLink, AiOutlineHome, AiOutlineUser } from 'react-icons/ai';
 
 const Main = styled(_Main)`
   #feature {
@@ -36,6 +36,7 @@ export default function Control() {
     <Main>
       <section id="feature">
         <IconLink to="/" children={<AiOutlineHome />} />
+        <IconLink to="/control/user" children={<AiOutlineUser />} />
         <IconLink to="/control/nav" children={<AiOutlineLink />} />
         <ThemeSwitch />
       </section>

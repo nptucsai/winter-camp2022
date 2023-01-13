@@ -40,3 +40,21 @@ export const verifyToken = (token) =>
   api_v2.post('/auth/verify', {}, { headers: { Authorization: token } });
 
 export const login = (name, password) => api_v2.post('/auth/login', { name, password });
+
+export const getUser = (token) =>
+  api_v1.post('/', { query: 'query { user { id name } }' }, { headers: { Authorization: token } });
+
+export const removeUser = (id, token) =>
+  api_v1.post(
+    '/',
+    { query: `mutation { removeUser(id: "${id}") { id } }` },
+    { headers: { Authorization: token } }
+  );
+export const addUser = (name, password, token) =>
+  api_v1.post(
+    '/',
+    {
+      query: `mutation { addUser(name: "${name}", password: "${password}") { id name } }`
+    },
+    { headers: { Authorization: token } }
+  );
