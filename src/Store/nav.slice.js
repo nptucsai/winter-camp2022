@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getNav } from '../API';
 
 const slice = createSlice({
   name: 'nav',
@@ -25,7 +24,12 @@ const slice = createSlice({
 
 export default slice.reducer;
 
-import { deleteNav as _deleteNav, addNav as _addNav, editNav as _editNav } from '../API';
+import {
+  getNav,
+  deleteNav as _deleteNav,
+  addNav as _addNav,
+  editNav as _editNav
+} from '../API/nav';
 
 export const fetchNavData = () => async (dispatch, _) => {
   const response = await getNav();

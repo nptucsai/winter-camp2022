@@ -13,7 +13,7 @@ const slice = createSlice({
 export default slice.reducer;
 
 // Actions
-import { getUser, removeUser as _removeUser, addUser as _addUser } from '../API';
+import { getUser, removeUser as _removeUser, addUser as _addUser } from '../API/user';
 
 export const fetchUser = () => async (dispatch, getState) => {
   const token = getState().auth;

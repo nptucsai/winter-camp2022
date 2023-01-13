@@ -23,7 +23,7 @@ const slice = createSlice({
 export default slice.reducer;
 
 // Actions
-import { verifyToken as _verifyToken, login as _login } from '../API';
+import { verifyToken as _verifyToken, login as _login } from '../API/auth';
 
 export const verifyToken = () => async (dispatch, getItem) => {
   const token = getItem().auth;
