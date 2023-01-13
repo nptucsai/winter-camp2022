@@ -5,7 +5,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from '../Pages/Home';
 import Login from '../Pages/Login';
 import Control from '../Pages/Control';
-import NavControl from '../Components/Control/nav';
+import NavControl from '../Components/Control/Nav';
 import UserControl from '../Components/Control/User';
 
 // FallbackElement
