@@ -7,6 +7,7 @@ import Login from '../Pages/Login';
 import Control from '../Pages/Control';
 import NavControl from '../Components/Control/Nav';
 import UserControl from '../Components/Control/User';
+import BasicControl from '../Components/Control';
 
 // FallbackElement
 import ErrorPage from './ErrorPage';
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
     path: '/control',
     element: <Control />,
     children: [
+      { path: '', element: <BasicControl /> },
       { path: 'nav', element: <NavControl /> },
       { path: 'user', element: <UserControl /> }
     ]
