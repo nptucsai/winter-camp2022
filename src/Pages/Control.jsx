@@ -43,14 +43,11 @@ export default function Control() {
   }, [token]);
 
   const logout = (e) => void dispatch(revokeToken());
-  const handleBackButton = (e) => {
-    navigate(-1);
-    e.preventDefault();
-  };
+
   return (
     <Main>
       <section id="feature">
-        <IconLink to="#" id="back" children={<MdArrowBack />} onClick={handleBackButton} />
+        <IconLink to="/control" id="back" children={<MdArrowBack />} />
         <IconLink to="/control/home" children={<AiOutlineHome />} />
         <IconLink to="/control/user" children={<AiOutlineUser />} />
         <IconLink to="/control/nav" children={<AiOutlineLink />} />
