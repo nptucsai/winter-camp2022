@@ -56,28 +56,7 @@ const Main = styled(_Main)`
     right: 20px;
   }
 
-  @media screen and (max-width: 750px) {
-    font-size: 1.6rem;
-  }
-
-  @media screen and (max-width: 600px) {
-    main > h1 {
-      border-bottom: 1px solid #f1f6f5;
-      font-size: 4rem;
-    }
-    nav ul {
-      flex-direction: column;
-    }
-
-    nav ul li {
-      padding: 8px 0;
-      font-size: 2.4rem;
-    }
-
-    nav ul li:not(:last-child) {
-      border-right: none;
-    }
-  }
+  ${(props) => props.extraStyle}
 `;
 
 export default function Home() {
@@ -86,6 +65,7 @@ export default function Home() {
   const rootSize = useSelector((s) => s.basic.HOME_FONT_SIZE);
   const titleSize = useSelector((s) => s.basic.HOME_TITLE_SIZE);
   const navSize = useSelector((s) => s.basic.HOME_NAV_SIZE);
+  const extraStyle = useSelector((s) => s.basic.HOME_EXTRA_STYLE);
 
   const dispatch = useDispatch();
 
@@ -95,7 +75,7 @@ export default function Home() {
   }, []);
 
   return (
-    <Main rootSize={rootSize} titleSize={titleSize} navSize={navSize}>
+    <Main rootSize={rootSize} titleSize={titleSize} navSize={navSize} extraStyle={extraStyle}>
       <h1>{title}</h1>
       <nav>
         <ul>
