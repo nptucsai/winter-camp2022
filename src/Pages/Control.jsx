@@ -51,7 +51,7 @@ export default function Control() {
     <Main>
       <section id="feature">
         <IconLink to="#" id="back" children={<MdArrowBack />} onClick={handleBackButton} />
-        <IconLink to="/" children={<AiOutlineHome />} />
+        <IconLink to="/control/home" children={<AiOutlineHome />} />
         <IconLink to="/control/user" children={<AiOutlineUser />} />
         <IconLink to="/control/nav" children={<AiOutlineLink />} />
         <IconLink to="/login" onClick={logout} children={<AiOutlineLogout />} />

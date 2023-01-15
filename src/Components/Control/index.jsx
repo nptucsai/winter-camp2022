@@ -37,7 +37,7 @@ const Link = styled(link)`
 export default function Basic() {
   return (
     <GridSection>
-      <Link to="/">
+      <Link to="/control/home">
         <AiOutlineHome />
         <span>Home</span>
       </Link>
