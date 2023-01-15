@@ -9,7 +9,13 @@ import { revokeToken } from '../Store/auth.slice';
 import _Main from '../Components/Main';
 import ThemeSwitch from '../Components/ThemeSwitch';
 import IconLink from '../Components/IconLink';
-import { AiOutlineLink, AiOutlineHome, AiOutlineUser, AiOutlineLogout } from 'react-icons/ai';
+import {
+  AiOutlineLink,
+  AiOutlineHome,
+  AiOutlineUser,
+  AiOutlineLogout,
+  AiOutlineAppstore
+} from 'react-icons/ai';
 import { MdArrowBack } from 'react-icons/md';
 
 const Main = styled(_Main)`
@@ -52,6 +58,7 @@ export default function Control() {
         <IconLink to="/control/user" children={<AiOutlineUser />} />
         <IconLink to="/control/nav" children={<AiOutlineLink />} />
         <IconLink to="/login" onClick={logout} children={<AiOutlineLogout />} />
+        <IconLink to="/control" children={<AiOutlineAppstore />} />
         <ThemeSwitch />
       </section>
       <section id="control">
