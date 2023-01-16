@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link as link } from 'react-router-dom';
 import { AiOutlineHome, AiOutlineUser, AiOutlineLink } from 'react-icons/ai';
+import { MdOutlineLeaderboard } from 'react-icons/md';
 
 const GridSection = styled.section`
   display: grid;
@@ -48,6 +49,10 @@ export default function Basic() {
       <Link to="/control/nav">
         <AiOutlineLink />
         <span>Nav</span>
+      </Link>
+      <Link to="/control/scores">
+        <MdOutlineLeaderboard />
+        <span>Score</span>
       </Link>
     </GridSection>
   );

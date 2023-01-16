@@ -16,7 +16,7 @@ import {
   AiOutlineLogout,
   AiOutlineAppstore
 } from 'react-icons/ai';
-import { MdArrowBack } from 'react-icons/md';
+import { MdArrowBack, MdOutlineLeaderboard } from 'react-icons/md';
 
 const Main = styled(_Main)`
   #feature {
@@ -59,6 +59,7 @@ export default function Control() {
         <IconLink to="/control/nav" children={<AiOutlineLink />} />
         <IconLink to="/login" onClick={logout} children={<AiOutlineLogout />} />
         <IconLink to="/control" children={<AiOutlineAppstore />} />
+        <IconLink to="/control/scores" children={<MdOutlineLeaderboard />} />
         <ThemeSwitch />
       </section>
       <section id="control">

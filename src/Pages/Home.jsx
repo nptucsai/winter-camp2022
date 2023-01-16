@@ -7,6 +7,8 @@ import { fetchBasic } from '../Store/basic.slice';
 // Components
 import _Main from '../Components/Main';
 import ThemeSwitch from '../Components/ThemeSwitch';
+import { MdOutlineLeaderboard } from 'react-icons/md';
+import IconLink from '../Components/IconLink';
 
 const Main = styled(_Main)`
   display: flex;
@@ -50,10 +52,23 @@ const Main = styled(_Main)`
     }
   }
 
-  button#theme-switch {
+  #feature {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 10px;
+  }
+  #control {
+    width: 80vw;
+    min-width: min-content;
+    margin: auto;
+  }
+  #back {
+    flex: 1 0 auto;
+    justify-content: flex-start;
   }
 
   @media screen and (max-width: 750px) {
@@ -96,6 +111,10 @@ export default function Home() {
 
   return (
     <Main rootSize={rootSize} titleSize={titleSize} navSize={navSize}>
+      <section id="feature">
+        <IconLink to="/scoreboard" children={<MdOutlineLeaderboard />} />
+        <ThemeSwitch />
+      </section>
       <h1>{title}</h1>
       <nav>
         <ul>
@@ -106,7 +125,6 @@ export default function Home() {
           ))}
         </ul>
       </nav>
-      <ThemeSwitch />
     </Main>
   );
 }
