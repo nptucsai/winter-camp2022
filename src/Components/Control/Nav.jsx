@@ -12,6 +12,7 @@ import Popup from '../Popup';
 
 const Container = styled.article`
   font-size: 1.8rem;
+  width: inherit;
 
   h1 {
     width: 100%;
@@ -42,7 +43,7 @@ const Container = styled.article`
     min-width: max(600px, calc(100vw - 120px));
     .nav-items {
       display: table-row;
-      span {
+      span:not(:last-child) {
         display: table-cell;
       }
     }
@@ -56,7 +57,7 @@ const Container = styled.article`
     border-bottom: 1px solid var(--color);
   }
 
-  @media screen and (min-width: 651px) {
+  @media screen and (min-width: 671px) {
     .nav-items > span:first-child {
       width: 10ch;
       text-align: center;
@@ -65,6 +66,7 @@ const Container = styled.article`
       width: 10ch;
     }
     .nav-items > span:last-child {
+      display: block;
       text-align: right;
       width: max-content;
     }
@@ -79,7 +81,7 @@ const Container = styled.article`
     margin: 0 5px;
   }
 
-  @media screen and (max-width: 650px) {
+  @media screen and (max-width: 670px) {
     #nav-list {
       display: block;
       min-width: 80vw;
@@ -119,6 +121,11 @@ const Container = styled.article`
 
     .nav-items > span:nth-child(3):before {
       content: 'url: ';
+    }
+  }
+  @media screen and (max-width: 400px) {
+    h1 > span {
+      font-size: 1.4em;
     }
   }
 `;
