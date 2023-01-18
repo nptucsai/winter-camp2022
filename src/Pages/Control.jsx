@@ -58,9 +58,9 @@ export default function Control() {
         <IconLink to="/control/home" children={<AiOutlineHome />} />
         <IconLink to="/control/user" children={<AiOutlineUser />} />
         <IconLink to="/control/nav" children={<AiOutlineLink />} />
-        <IconLink to="/login" onClick={logout} children={<AiOutlineLogout />} />
-        <IconLink to="/control" children={<AiOutlineAppstore />} />
         <IconLink to="/control/scores" children={<MdOutlineLeaderboard />} />
+        <IconLink to="/control" children={<AiOutlineAppstore />} />
+        <IconLink to="/login" onClick={logout} children={<AiOutlineLogout />} />
         <ThemeSwitch />
       </section>
       <section id="control">
