@@ -89,7 +89,7 @@ export default function Login() {
   }, []);
 
   useEffect(() => {
-    if (token) navigate('/control');
+    if (token) navigate('/control', { replace: true });
   }, [token]);
 
   const handleLogin = (e) => {

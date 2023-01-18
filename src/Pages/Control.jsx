@@ -45,15 +45,16 @@ export default function Control() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!token) navigate('/login');
+    if (!token) navigate('/login', { replace: true });
   }, [token]);
 
   const logout = (e) => void dispatch(revokeToken());
+  const handleLastPage = (e) => void navigate(-1);
 
   return (
     <Main>
       <section id="feature">
-        <IconLink to="/control" id="back" children={<MdArrowBack />} />
+        <IconLink onClick={handleLastPage} id="back" children={<MdArrowBack />} />
         <IconLink to="/control/home" children={<AiOutlineHome />} />
         <IconLink to="/control/user" children={<AiOutlineUser />} />
         <IconLink to="/control/nav" children={<AiOutlineLink />} />
